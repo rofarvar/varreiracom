@@ -1,28 +1,71 @@
-<DOCTYPE html>
+<!DOCTYPE html>
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <title>Varreira.com</title>
     <style>
       body, html {
         font-family: rubik;
         text-align: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s;
+      }
+      .bg-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255,255,255,0.80);
+        z-index: -1;
+      }
+      /* Make sure content is above overlay */
+      body > * {
+        position: relative;
+        z-index: 1;
       }
     </style>
   </head>
   <body>
+    <div class="bg-overlay"></div>
     <h1>Welcome to Varreira.com!</h1>
     <p>Ooh, ooh! Here's a link to a search engine.</p>
-    <script async src="https://cse.google.com/cse.js?cx=03c095255346f4049">
-</script>
-<div class="gcse-search"></div>
+    <script async src="https://cse.google.com/cse.js?cx=03c095255346f4049"></script>
+    <div class="gcse-search"></div>
     <p>Also, here's some more links:</p>
     <a href="https://github.com/rofarvar">My github</a>
     <a href="https://scratch.mit.edu/users/ricegroup">RiceGroup</a>
     <a href="https://scratch.mit.edu/users/Cool123games">Cool123games</a>
     <p>Soon enough there will be some ads under this banner.</p>
     
-    
+    <script>
+      // Get today's date as a string
+      const today = new Date().toISOString().slice(0,10);
+
+      // Use localStorage to avoid refetching on every reload during the day
+      const saved = JSON.parse(localStorage.getItem('bg_landscape') || '{}');
+      if(saved.date === today && saved.url) {
+        setBg(saved.url);
+      } else {
+        // Unsplash random landscape image, with today's date as a "seed" (using the sig param for unique daily image)
+        const url = `https://source.unsplash.com/1600x900/?landscape&sig=${today.replace(/-/g,'')}`;
+        // Preload image before setting
+        const img = new Image();
+        img.onload = function() {
+          setBg(url);
+          localStorage.setItem('bg_landscape', JSON.stringify({date: today, url}));
+        };
+        img.src = url;
+      }
+
+      function setBg(url) {
+        document.body.style.backgroundImage = `url('${url}')`;
+      }
+    </script>
   </body>
 </html>
