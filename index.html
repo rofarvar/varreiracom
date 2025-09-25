@@ -2,20 +2,48 @@
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <title>Varreira.com</title>
+    <style>
+      body, html {
+        font-family: "Lexend:, sans-serif;
+        text-align: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s;
+      }
+      .bg-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255,255,255,0.80);
+        z-index: -1;
+      }
+      /* Make sure content is above overlay */
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
   </head>
   <body>
     <div class="bg-overlay"></div>
     <img style="width: 250px; height: 250px;" src="Logo.png"></img>
-    <h2>RiceOS 4 Pro. Pro features. Incredible design. <a href="https://riceos.varreira.com">Try now.</a></h2>
-    <p>Varreira Search. Powered by the world's most popular search engine.</p>
+    <p>Ooh, ooh! Here's a link to a search engine.</p>
     <script async src="https://cse.google.com/cse.js?cx=03c095255346f4049"></script>
     <div class="gcse-search"></div>
     <p>Also, here's some more links:</p>
     <a href="https://github.com/rofarvar">My github</a>
     <a href="https://scratch.mit.edu/users/ricegroup">RiceGroup</a>
     <a href="https://scratch.mit.edu/users/Cool123games">Cool123games</a>
+    <p>Soon enough there will be some ads under this banner.</p>
+    <h1>OOOOOOH WE ALMOST FORGOT</h1>
+    <h2>RiceOS 4.0 Web. Completely on the web. <a href="https://riceos.varreira.com">Learn more.</a></h2>
     <script>
       // Get today's date as a string
       const today = new Date().toISOString().slice(0,10);
